@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "laboratory-work-1"
+version = "0.1.0"
+description = "Лабораторная работа №1 по ИИ"
+authors = ["Andrey <pustakovandrej@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+isort = "^5.13.2"
+black = "^24.10.0"
+flake8 = "^7.1.1"
+mypy = "^1.13.0"
+pre-commit = "^4.0.1"
+pytest = "^8.3.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

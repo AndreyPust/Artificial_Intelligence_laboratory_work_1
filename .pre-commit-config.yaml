@@ -1,0 +1,79 @@
+repos:
+- repo: local
+  hooks:
+    # flake8
+    - id: flake8
+    name: flake8
+    entry: poetry run flake8
+    language: system
+    types_or: [python, pyi]
+    require_serial: true
+
+    # mypy
+    - id: mypy
+    name: mypy
+    entry: poetry run mypy
+    language: system
+    types_or: [python, pyi]
+    require_serial: true
+
+    # isort
+    - id: isort
+    name: isort
+    entry: poetry run isort
+    language: system
+    types_or: [python, pyi]
+    require_serial: true
+
+    # black
+    - id: black
+    name: black
+    entry: poetry run black
+    language: system
+    types_or: [python, pyi]
+    require_serial: true
+
+    # pytest
+    - id: pytest
+    name: pytest
+    entry: poetry run pytest
+    language: system
+    types_or: [python]
+    require_serial: true
+
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.13.2
+    hooks:
+      - id: isort
+        name: Sort imports with isort
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.13.0
+    hooks:
+      - id: mypy
+        name: Static type check with mypy
+        args: ["--strict"]  # Добавить строгий режим проверки типов
+
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+        name: Format code with Black
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.1.1
+    hooks:
+      - id: flake8
+        name: Lint Python code with flake8
+        additional_dependencies:   # Флаги или расширения flake8
+          - flake8-bugbear         # Проверка частых ошибок
+          - flake8-comprehensions  # Оптимизация list/dict comprehensions
+
+  - repo: https://github.com/pytest-dev/pytest
+    rev: 8.3.4
+    hooks:
+      - id: pytest
+        name: Run tests with pytest
+        additional_dependencies:
+          - pytest-mock
+          - pytest-cov
