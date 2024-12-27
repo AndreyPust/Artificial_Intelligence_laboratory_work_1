@@ -1,0 +1,14 @@
+black @ file:///C:/b/abs_3arhghl9_x/croot/black_1725573890945/work
+click @ file:///C:/b/abs_f9ihnt72pu/croot/click_1698129847492/work
+colorama @ file:///C:/b/abs_a9ozq0l032/croot/colorama_1672387194846/work
+flake8 @ file:///C:/b/abs_11zrixwsv1/croot/flake8_1726157202790/work
+isort @ file:///C:/b/abs_50iy840e4z/croot/isort_1718291849200/work
+mccabe @ file:///opt/conda/conda-bld/mccabe_1644221741721/work
+mypy-extensions @ file:///C:/b/abs_8f7xiidjya/croot/mypy_extensions_1695131051147/work
+packaging @ file:///C:/b/abs_c3vlh0z4jw/croot/packaging_1720101866539/work
+pathspec @ file:///C:/b/abs_9cu5_2yb3i/croot/pathspec_1674681579249/work
+platformdirs @ file:///C:/b/abs_b6z_yqw_ii/croot/platformdirs_1692205479426/work
+pycodestyle @ file:///C:/b/abs_9bj6ihy3hn/croot/pycodestyle_1726150314067/work
+pyflakes @ file:///C:/b/abs_b6t1aazq2e/croot/pyflakes_1708963020907/work
+tomli @ file:///C:/Windows/TEMP/abs_ac109f85-a7b3-4b4d-bcfd-52622eceddf0hy332ojo/croots/recipe/tomli_1657175513137/work
+typing_extensions @ file:///C:/b/abs_0as9mdbkfl/croot/typing_extensions_1715268906610/work
