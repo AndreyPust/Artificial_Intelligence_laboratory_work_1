@@ -1,12 +1,8 @@
 import heapq
 import math
 from abc import ABC, abstractmethod
-from collections import deque
 
 
-# -------------------------------------------------------------
-# Абстрактный класс Problem
-# -------------------------------------------------------------
 class Problem(ABC):
     """Абстрактный класс для формальной постановки задачи."""
 
@@ -31,18 +27,18 @@ class Problem(ABC):
         return state == self.goal
 
     def action_cost(self, s, a, s1):
-        """Стоимость шага (s->s1) под действием a.
-        По умолчанию = 1, но в реальных задачах переопределяется."""
+        """
+        Стоимость шага (s->s1) под действием a.
+        По умолчанию = 1, но в реальных задачах переопределяется.
+        """
+
         return 1
 
     def h(self, node):
-        """Эвристическая функция (для A*), по умолчанию 0."""
+        """Эвристическая функция, по умолчанию 0."""
         return 0
 
 
-# -------------------------------------------------------------
-# Класс Node
-# -------------------------------------------------------------
 class Node:
     """Узел в дереве поиска."""
 
@@ -56,7 +52,7 @@ class Node:
         return f"<Node {self.state}>"
 
     def __lt__(self, other):
-        """Сравнение по path_cost (чтобы работать в приоритетных очередях)."""
+        """Сравнение по path_cost."""
         return self.path_cost < other.path_cost
 
     def __len__(self):
@@ -68,9 +64,6 @@ failure = Node("failure", path_cost=math.inf)
 cutoff = Node("cutoff", path_cost=math.inf)
 
 
-# -------------------------------------------------------------
-# Вспомогательные функции
-# -------------------------------------------------------------
 def path_actions(node):
     """Последовательность действий для достижения данного узла."""
     if node.parent is None:
@@ -95,13 +88,6 @@ def expand(problem, node):
         yield Node(s1, parent=node, action=action, path_cost=cost)
 
 
-# -------------------------------------------------------------
-# Очереди: FIFO, LIFO, PriorityQueue
-# -------------------------------------------------------------
-FIFOQueue = deque  # поиск в ширину
-LIFOQueue = list  # поиск в глубину
-
-
 class PriorityQueue:
     """Очередь с приоритетом, извлекает элемент с минимальным key(item)."""
 
@@ -124,14 +110,10 @@ class PriorityQueue:
         return len(self.items)
 
 
-# -------------------------------------------------------------
-# Универсальный поиск по дереву (tree_search),
-# но мы сделаем специализацию под Uniform Cost Search
-# -------------------------------------------------------------
 def uniform_cost_tree_search(problem):
     """
     Поиск по дереву, где выбор узла происходит на основе
-    наименьшего path_cost.
+    наименьшего path_cost (функция по псевдокоду).
     """
     node = Node(problem.initial)
     if problem.is_goal(node.state):
@@ -151,6 +133,11 @@ def uniform_cost_tree_search(problem):
 
 
 class MapProblem(Problem):
+    """
+    Дочерний класс от Problem.
+    Конкретная реализация задачи поиска кратчайшего пути.
+    """
+
     def __init__(self, initial, goal, graph):
         super().__init__(initial=initial, goal=goal)
         self.graph = graph
@@ -164,11 +151,12 @@ class MapProblem(Problem):
         Результатом перехода (действия) 'action' из 'state' будет сам город 'action'.
         Здесь 'action' — это название соседнего города.
         """
+
         return action
 
     def action_cost(self, s, a, s1):
         """
-        Стоимость пути = вес дуги в графе.
+        Стоимость пути - это вес ребра в графе.
         s - исходный город,
         a - следующий город (действие),
         s1 - тоже следующий город (по сути a == s1).
