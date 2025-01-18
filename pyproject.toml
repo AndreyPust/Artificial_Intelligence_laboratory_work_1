@@ -1,20 +1,49 @@
-[tool.poetry]
-name = "laboratory-work-1"
+[project]
+name = "ai-lab-1"
 version = "0.1.0"
-description = "Лабораторная работа №1 по ИИ"
-authors = ["Andrey <pustakovandrej@gmail.com>"]
+description = "Лабораторная работа 1 ИИ"
+authors = [
+    {name = "Andrey",email = "pustakovandrej@gmail.com"}
+]
+license = {text = "MIT"}
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.9"
-isort = "^5.13.2"
-black = "^24.10.0"
-flake8 = "^7.1.1"
-mypy = "^1.13.0"
-pre-commit = "^4.0.1"
-pytest = "^8.3.4"
+requires-python = "3.12.8"
+dependencies = [
+]
 
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.1.1"
+isort = "^5.13.2"
+black = "^24.10.0"
+pre-commit = "^4.0.1"
+flake8-pyproject = "^1.2.3"
+
+[tool.isort]
+include_trailing_comma = true
+line_length = 79
+lines_after_imports = 2
+
+[tool.flake8]
+exclude = [
+    ".git",
+    ".idea",
+    "doc",
+    "tests",
+    ".gitignore"
+]
+max-line-length = 120
+ignore = ["E203", "F841"]
+
+[tool.black]
+line-length = 120
+exclude = """
+.idea/
+tests/
+doc/
+"""
+
